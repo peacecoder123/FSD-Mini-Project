@@ -70,8 +70,12 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`[ShopEase Server] Running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-  console.log(`[ShopEase Server] Health check available at: http://localhost:${PORT}/api/health`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`[ShopEase Server] Running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+    console.log(`[ShopEase Server] Health check available at: http://localhost:${PORT}/api/health`);
+  });
+}
+
+export default app;
 
