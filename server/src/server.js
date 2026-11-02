@@ -43,8 +43,12 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
+import os from 'os';
+
 // Serve static uploads
-const uploadsPath = path.resolve('uploads');
+const uploadsPath = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'uploads')
+  : path.resolve('uploads');
 app.use('/uploads', express.static(uploadsPath));
 
 // Root API Landing Route
