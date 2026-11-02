@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopEase — Modern Commerce Reimagined</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#c3c6d7",
+            "on-background": "#131b2e",
+            "surface-bright": "#faf8ff",
+            "tertiary-fixed": "#7ffc97",
+            "on-secondary-fixed-variant": "#0039b5",
+            "primary-fixed-dim": "#b4c5ff",
+            "primary": "#004ac6",
+            "surface-container-high": "#e2e7ff",
+            "on-secondary": "#ffffff",
+            "surface-container": "#eaedff",
+            "secondary-fixed-dim": "#b7c4ff",
+            "primary-container": "#2563eb",
+            "error": "#ba1a1a",
+            "on-primary-container": "#eeefff",
+            "on-tertiary-fixed-variant": "#005320",
+            "on-primary-fixed-variant": "#003ea8",
+            "background": "#faf8ff",
+            "inverse-surface": "#283044",
+            "surface-container-lowest": "#ffffff",
+            "surface": "#faf8ff",
+            "surface-tint": "#0053db",
+            "on-primary-fixed": "#00174b",
+            "surface-variant": "#dae2fd",
+            "secondary": "#1d4ed8",
+            "tertiary": "#006329",
+            "surface-dim": "#d2d9f4",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#fffbff",
+            "on-primary": "#ffffff",
+            "on-tertiary-container": "#c7ffca",
+            "secondary-container": "#4069f2",
+            "on-tertiary-fixed": "#002109",
+            "inverse-primary": "#b4c5ff",
+            "on-secondary-fixed": "#001551",
+            "primary-fixed": "#dbe1ff",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#434655",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#dae2fd",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "tertiary-fixed-dim": "#62df7d",
+            "outline": "#737686",
+            "tertiary-container": "#007f36",
+            "secondary-fixed": "#dce1ff",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f2f3ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem",
+            "margin-sm": "1rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c3c6d7;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TOP UTILITY STRIP -->
+<aside aria-label="Announcement banner" class="bg-inverse-surface text-inverse-on-surface py-1.5 px-6 border-b border-surface-container-high/20">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between font-label-md text-label-md">
+<div class="flex items-center gap-4">
+<span class="inline-flex items-center gap-1.5 text-tertiary-fixed-dim">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-pulse"></span>
+          Spring Flash Event Live
+        </span>
+<span class="text-outline-variant">|</span>
+<span>Free Express Delivery on orders over $50</span>
+</div>
+<div class="flex items-center gap-6 text-inverse-on-surface/80">
+<a class="hover:text-inverse-on-surface transition-colors" href="#order-tracking">Track Order</a>
+<a class="hover:text-inverse-on-surface flex items-center gap-1 transition-colors" href="#currency">
+<span>USD ($)</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</a>
+<a class="hover:text-inverse-on-surface flex items-center gap-1 transition-colors" href="#lang">
+<span>English</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- 1. TOP NAVIGATION BAR (Shared Components JSON Anchor) -->
+<header class="docked full-width top-0 sticky z-50 bg-surface-container-lowest shadow-sm border-b border-surface-container-high">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-[1440px] mx-auto gap-6">
+<!-- Brand Logo Anchor -->
+<div class="flex items-center gap-8 shrink-0">
+<a class="flex items-center gap-3 active:scale-[0.98] transition-transform duration-150" href="#">
+<img alt="ShopEase Logo" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VqCPp98m27GtQPD7VV3MJVSFksw-vRNx8RfYQ0ljfjaAXttEUz6KPtbajSj2zMDgaZyXSp7_V8gOKtm8Y2h8JH18KpXCkGtmYyDqcwsuLspbcdXoZHo6EsZskneXczWBiL4Ax4S4OoRdcq5wMkLJhF2wybzBsIalNrD_Ql27dTYTiSZwvkM6ykf1ETAwlTeX8RWRsmxJes8dV0c1F-Vv-_6moFFsDFwIb00B73Vlt8"/>
+</a>
+<!-- Navigation Links (from JSON + required category links) -->
+<nav class="hidden xl:flex items-center gap-6 font-label-lg text-label-lg">
+<a class="text-primary font-semibold border-b-2 border-primary pb-1 active:scale-[0.98] transition-transform duration-150" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface font-normal transition-colors pb-1" href="#shop">Shop</a>
+<a class="text-on-surface-variant hover:text-on-surface font-normal transition-colors pb-1" href="#categories">Categories</a>
+<a class="text-on-surface-variant hover:text-on-surface font-normal transition-colors pb-1 flex items-center gap-1" href="#deals">
+<span>Deals</span>
+<span class="px-1.5 py-0.5 rounded-full bg-error-container text-error text-[10px] font-bold">HOT</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface font-normal transition-colors pb-1" href="#electronics">Electronics</a>
+<a class="text-on-surface-variant hover:text-on-surface font-normal transition-colors pb-1" href="#fashion">Fashion</a>
+<a class="text-on-surface-variant hover:text-on-surface font-normal transition-colors pb-1" href="#home-living">Home &amp; Living</a>
+</nav>
+</div>
+<!-- Center Unified Search with Dropdown & Command Shortcut -->
+<div class="flex-1 max-w-xl mx-2">
+<form class="relative flex items-center" role="search">
+<div class="absolute left-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-11 pl-10 pr-28 rounded-lg bg-surface-container-low border border-outline-variant/40 text-body-md placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" placeholder="Search ultra-minimal desk gear, headphones, apparel..." type="text"/>
+<div class="absolute right-2.5 flex items-center gap-1.5">
+<span class="hidden sm:inline-block px-1.5 py-0.5 rounded text-[11px] font-semibold bg-surface-container-highest text-on-surface-variant tracking-wider font-mono">⌘K</span>
+</div>
+</form>
+</div>
+<!-- Trailing Action Icons (favorite, shopping_bag, person with counters) -->
+<div class="flex items-center gap-2 sm:gap-4 shrink-0">
+<!-- Wishlist -->
+<a class="relative p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]" href="#wishlist">
+<span class="material-symbols-outlined text-[24px]">favorite</span>
+<span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-primary-container text-on-primary font-label-sm text-[10px] flex items-center justify-center font-bold">3</span>
+</a>
+<!-- Shopping Cart Drawer Trigger -->
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-error text-on-error font-label-sm text-[10px] flex items-center justify-center font-bold">2</span>
+</button>
+<!-- User Account Menu -->
+<div class="flex items-center gap-2 pl-2 border-l border-surface-container-high">
+<button class="flex items-center gap-2 p-1.5 pr-2.5 rounded-lg hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]" type="button">
+<span class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</span>
+<div class="hidden lg:flex flex-col text-left">
+<span class="font-label-sm text-label-sm text-outline leading-none">Hi, Alex</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">My Account</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Category Bar for Desktop Fast Browsing -->
+<div class="bg-surface-container-lowest border-t border-surface-container-high/60 hidden md:block">
+<div class="max-w-[1440px] mx-auto px-6 py-2 flex items-center justify-between font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-6 overflow-x-auto custom-scrollbar">
+<span class="flex items-center gap-1.5 text-on-surface font-semibold shrink-0">
+<span class="material-symbols-outlined text-[18px]">menu</span>
+            Browse All
+          </span>
+<a class="hover:text-primary shrink-0 transition-colors" href="#audio">Audio</a>
+<a class="hover:text-primary shrink-0 transition-colors" href="#smart-devices">Smart Devices</a>
+<a class="hover:text-primary shrink-0 transition-colors" href="#computing">Computing &amp; Office</a>
+<a class="hover:text-primary shrink-0 transition-colors" href="#wearables">Wearables</a>
+<a class="hover:text-primary shrink-0 transition-colors" href="#lifestyle">Modern Living</a>
+<a class="hover:text-primary shrink-0 transition-colors" href="#photography">Camera &amp; Optics</a>
+<a class="hover:text-error text-error/90 font-semibold shrink-0 transition-colors" href="#clearance">Spring Clearance (Up to 50% Off)</a>
+</div>
+<div class="flex items-center gap-4 shrink-0 text-outline">
+<span class="flex items-center gap-1 hover:text-on-surface transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span> Order Status
+          </span>
+<span class="flex items-center gap-1 hover:text-on-surface transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">headset_mic</span> 24/7 Concierge
+          </span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- 2. HERO SECTION -->
+<section class="relative overflow-hidden bg-surface-container-lowest border-b border-surface-container-high">
+<div class="max-w-[1440px] mx-auto px-6 py-12 lg:py-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Editorial Copy -->
+<div class="lg:col-span-6 flex flex-col items-start gap-6">
+<!-- Promotional Tag -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low border border-surface-container-high text-primary font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-semibold text-on-surface">Spring Tech Drop 2025</span>
+<span class="text-outline-variant">•</span>
+<span class="text-secondary font-bold">Up to 40% Off</span>
+</div>
+<!-- Display Headline -->
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight leading-[1.08]">
+              Everything you love, <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary-container">all in one place.</span>
+</h1>
+<!-- Subheading -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+              Curated premium tech, design essentials, and lifestyle collections delivered with next-day dispatch and risk-free satisfaction.
+            </p>
+<!-- Dual CTA Cluster -->
+<div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+<a class="h-11 px-8 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:bg-secondary active:scale-[0.98] transition-all" href="#shop">
+<span>Shop Now</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+<a class="h-11 px-6 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-surface-container-low active:scale-[0.98] transition-all" href="#categories">
+<span>Explore Categories</span>
+</a>
+</div>
+<!-- Social Proof Micro-Strip -->
+<div class="flex items-center gap-6 pt-4 border-t border-surface-container-high/80 w-full">
+<div class="flex items-center -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="Portrait of a satisfied customer in high key soft ambient lighting, clean and modern aesthetic with vibrant sharp detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi_hSyE7WZwjfpr2cTgqRjKb_9hZ8D0aYrGJNjndVURWmeh4gmUszi54RiC5IFabG8dOg9q4mq-MYcM6BLyZEORU-QwbrHh6cDuJ3KRzLg0afviaT-dEuAKT1trJgfYLnS2JWazZMDUnPx3ro1WLZK1hJLmJxE_YWXVRexkFuoiCVmMeTmsQ9f3n44dMqbMn5hrSWBUWcLIL4FDgq1kMZBAi7pPwkitW7L2JxULjc"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="Close up profile picture of a young professional in bright studio lighting, confident expression, minimal clean composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgdIT0gl9Jti3hYMtDZ2wGyX9GlkRg6ka6lhDxWRJAfqumYWXfP8Ws22SfiLWNy0ky-_7FxYd1agitN_tm1N7Tr6P-93RJUpPQVFWzGEaJSHk9CbOFxMzts6o8PgZeKFS6tPjeqRH7T7H4eEldCHWFT92XyKc4subqlX9pE6Dwj4fapmu6hXuP1BkFDYg8299JKYwIZ3tDOEU9pb7Y9pi9W5YQ-81H4Rk8oUffFTY"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="Smiling shopper smiling at camera with subtle warm tones, crisp modern photography in modern bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg9-MhvnMp9gygMlqQH3JpYWk1oeEr8V23TUFcD22NY9-ipCISRcO-8Hup2JgR6Y-DwGfNrriGkl-cAYwV8ocw45jsqCtTAn9w-wEYWemwkHapKbl5IBbQQwQZR_08BP-4nATQyJIKunNZezDsF8gNvQcMrHDgCJX58Q4TGNwNC68VfZgm0JjN4eXE1DHB7MnPthjotJYdehkXzneZiwg1atK_mbgA7EHydfdAkTM"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high text-primary font-label-sm text-[10px] font-bold flex items-center justify-center">+18k</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center text-amber-500 gap-0.5">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="font-label-md text-label-md font-bold text-on-surface ml-1">4.92 / 5.0</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Over 48,000 Verified Community Reviews</span>
+</div>
+</div>
+</div>
+<!-- Right Showcase Hero Media Card -->
+<div class="lg:col-span-6 relative">
+<div class="relative rounded-2xl bg-surface-container-low border border-surface-container-high p-4 sm:p-6 shadow-sm overflow-hidden group">
+<!-- Subtle decorative gradient wash -->
+<div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-primary-fixed/30 blur-3xl pointer-events-none"></div>
+<!-- Main Hero Product Imagery -->
+<div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="Flagship matte obsidian noise-canceling over-ear headphones resting gracefully on a sculpted minimalist anodized aluminum desk stand beside a titanium laptop and ceramic mug. The lighting is pristine editorial studio diffuse light with high contrast reflections on metal textures, showcasing luxurious craft and modern ergonomics in a pure white studio setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiQ2Cdw9JUmyUGMHEjh7XAx7XJ23yZJrt-fvzCVl89KTTbP5V5wBKhG6GgQjMwu1g3DZJKqV3ch2-qQbQ32zNCn1WfB1St3BmZ9k34x365iQzu7BhFBrTNSkjVxtsLM0TVtUMqmZWonKre2nExvjwHMRyYRGi8S_VgI-gyM6jSHUXwrOv-do-GbR8Ng39ui3a1psC-ID7H2DZHlW-CnFN8TgFDTSSTEe1MZs1BTxw"/>
+<!-- Floating Product Badge -->
+<div class="absolute top-4 left-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-surface-container-high shadow-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-bold">Featured Flagship</span>
+</div>
+<!-- Floating Spec Pill -->
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md p-3 rounded-xl border border-surface-container-high shadow-md max-w-xs hidden sm:block">
+<div class="flex items-center justify-between gap-4">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Aura Studio ANC 2</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active Noise Suppression • 60h Playtime</p>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md font-bold text-primary">$329</span>
+<span class="block font-label-sm text-label-sm line-through text-outline">$399</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sub-feature micro-grid -->
+<div class="grid grid-cols-3 gap-3 mt-4">
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-surface-container-high flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline block">Dispatch</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">In 24 Hours</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-surface-container-high flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline block">Warranty</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">2-Year Official</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-surface-container-high flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline block">Trial</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">30 Days Risk-Free</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. TRUST & VALUE PROPS (4-Column Bar) -->
+<section class="border-b border-surface-container-high bg-surface-container-lowest">
+<div class="max-w-[1440px] mx-auto px-6 py-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 divide-y md:divide-y-0 lg:divide-x divide-surface-container-high">
+<div class="flex items-center gap-4 pt-4 md:pt-0 lg:px-4 first:pl-0">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">local_shipping</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Free Express Shipping</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Complimentary delivery on all orders over $50</p>
+</div>
+</div>
+<div class="flex items-center gap-4 pt-4 md:pt-0 lg:px-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">assignment_return</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">30-Day Risk-Free Returns</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Effortless prepaid label pickups, no questions asked</p>
+</div>
+</div>
+<div class="flex items-center gap-4 pt-4 md:pt-0 lg:px-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">support_agent</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">24/7 Dedicated Support</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Direct access to product specialists in under 60 seconds</p>
+</div>
+</div>
+<div class="flex items-center gap-4 pt-4 md:pt-0 lg:px-4 last:pr-0">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">lock</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">100% Secure Payment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bank-grade 256-bit encryption with Apple Pay &amp; Visa</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. SHOP BY CATEGORY -->
+<section class="max-w-[1440px] mx-auto px-6 py-16" id="categories">
+<div class="flex items-end justify-between mb-8">
+<div>
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase tracking-wider">Curated Collections</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">Shop by Category</h2>
+</div>
+<a class="hidden sm:inline-flex items-center gap-1 font-label-lg text-label-lg text-primary hover:text-secondary font-semibold transition-colors" href="#all-categories">
+<span>View All 24 Categories</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+<!-- Category Card 1 -->
+<a class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col items-center text-center hover:border-primary-container hover:shadow-md transition-all duration-200" href="#audio">
+<div class="w-full aspect-square rounded-lg bg-surface-container-low mb-3 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Minimalist wireless earbud charging case sitting cleanly on smooth matte ceramic platform with high key studio backlighting, highlighting pristine white and metallic textures in a refined e-commerce visual style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjTshVLz1yYyfUsxvmnzmSYz2aYK2IgDPvgrcWJv2q-2HGuaPCnpgDqsbUUliSGg8x_kP4FyBPUQgu60YgoqThG4g4YdsOi8L5jLIKQBG6YfMkJndhOec62mqvN-xyTy-fXCjy-8CGRp02GIGMy13-s8YZJ-ggX5Onds6ByPEnboaa-mWuba6BGOJwWrAxgcjukcCMvOcFuAwPAnmz2vlyaOR7XR5A318o8y7v66Y"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Audio &amp; Sound</h3>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">142 Products</span>
+</a>
+<!-- Category Card 2 -->
+<a class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col items-center text-center hover:border-primary-container hover:shadow-md transition-all duration-200" href="#smart-devices">
+<div class="w-full aspect-square rounded-lg bg-surface-container-low mb-3 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Ultra sleek smart home ambient hub display on a walnut credenza with soft warm daylight streaming in from an architectural window, crisp light mode aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfcoPdtw0LpB_yG9G59UMURdXOaC_GqwOqNZ3BM_tCejEAjDMUk064DZstJGEQLO14qcKxtCJNbZAknoJ11DzzjOxgfVD_X81hBELdsqu2sCM98nIxXCR4oqzUNb6fOrLlIJargpfuPI23RkOPp8dh88h_qaFQssc9fCdMEzRPDUXsyOZPTLU2EPFb3AA0gHTFhwNZ-UTG5gNfzbUZEgifikHlZqKeyTx2c2WhW9w"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Smart Devices</h3>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">88 Products</span>
+</a>
+<!-- Category Card 3 -->
+<a class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col items-center text-center hover:border-primary-container hover:shadow-md transition-all duration-200" href="#minimal-workspace">
+<div class="w-full aspect-square rounded-lg bg-surface-container-low mb-3 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Solid machined aluminum mechanical keyboard and precision ergonomic mouse arranged on a wool felt desk pad with minimal architectural design discipline in soft balanced daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7evo5KYETRjq_z-N-3ROuxUq4iOV4jHtdCSdUbjU4L7hRoLM0fB3VPfQcmdwro0BjpYcq9b3dt-WFFQCs0Tjr-TnkT0Q1cb2ImAyefstlRwkUy4uiWwVsNsxzn-mAvaOAKd-OeGTiRseotof7grywBbE8ROaeRiegqEFr-V0AkOUEdJzDHWtKAbKsZgUj4peQIwe-mbP4hcOJX7pkdXwqOVPkaR2ekNiH5D8RoQI"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Minimal Workspace</h3>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">210 Products</span>
+</a>
+<!-- Category Card 4 -->
+<a class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col items-center text-center hover:border-primary-container hover:shadow-md transition-all duration-200" href="#designer-apparel">
+<div class="w-full aspect-square rounded-lg bg-surface-container-low mb-3 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Folded luxury heavyweight organic cotton crewneck sweatshirt and tailored minimalist trench coat in neutral ecru tones on a clean oak bench in diffuse studio illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZbcCgY-KrJWppeAGjcADcnzwa36zogziXwM2CrQ4KjPH7PST_Qdvn62S_fLIsn-AVrfr6xadoyAwI-Izj7PP-sOz3Q424BPK6H7marsCo4rc3z836P04O8gqJv_RlGutYALqTVX2cAjyBZrik6hI4hXn6qYW4zFOWH5wNl8bHXLgtzjHpuPrOLRVRqYC8Hw0FaQhkeFIHBfwSjhRHS3ereZMte3-9Vg2A5Xc_aOk"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Designer Apparel</h3>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">340 Products</span>
+</a>
+<!-- Category Card 5 -->
+<a class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col items-center text-center hover:border-primary-container hover:shadow-md transition-all duration-200" href="#home-living">
+<div class="w-full aspect-square rounded-lg bg-surface-container-low mb-3 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modern Japanese style ceramic kettle and matching cups placed beside an architectural cast iron candleholder on a bright travertine table in clean white lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQKbN4ulwuziCaC3tGoVmHnrKQJAonzp1VmKR9j44VhxHLWaGG6kIogP5ISeA45_47JNU-AxvFoCE6iSoCThIJYYJXHJKolGD2EMgFw1AYh10l_1KLj-gabubVxxp9rtNpcGexxf6MK4QM8Jj7brpyb5DsYvD4GX14kOD1C9ozqTaax7BQN3ciZzjKxHQ-p3kJ8sz2nL3xJ4rkCe1PVI-GplPxz8-g6zOlJwz6eCY"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Home Living</h3>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">175 Products</span>
+</a>
+<!-- Category Card 6 -->
+<a class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col items-center text-center hover:border-primary-container hover:shadow-md transition-all duration-200" href="#photography">
+<div class="w-full aspect-square rounded-lg bg-surface-container-low mb-3 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Retro modern mirrorless camera with prime lens resting on leather camera strap in clean studio light against smooth neutral grey backdrop, highlighting tactile knobs and precision optics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9hmo58BYGpnlX-lp0aoBjGijWELbuVka3cLLjyE_PEUZBqqk_kqL0-5_Uit5Kpx2BmJxT0vTZ7kaKOVYMkkOMeJcWn3ifwWsc-vQcwJoztZfpv0lFx6SRPux6eagAIs2OoqAbbOr_2z1sH4D85XaJhvzash73ikVr08VaBjSzyrwtXV-0c1dzkTEjuAFqR_OpQBuKXa1DDGVz62kfq4LNm6SwLDHCmALEEeUrlc"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Photography</h3>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">64 Products</span>
+</a>
+</div>
+</section>
+<!-- 5. LIMITED-TIME FLASH DEALS (Countdown + Progress bars) -->
+<section class="bg-surface-container-low border-y border-surface-container-high py-16" id="deals">
+<div class="max-w-[1440px] mx-auto px-6">
+<!-- Header with Countdown Timer -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded bg-error text-on-error font-label-sm text-[11px] font-bold tracking-wider">LIMITED TIME</span>
+<span class="text-error font-bold flex items-center gap-1 font-label-md">
+<span class="material-symbols-outlined text-[18px]">bolt</span> Flash Sale
+              </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Today's Spotlight Deals</h2>
+</div>
+<!-- Countdown Display -->
+<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2.5 rounded-xl border border-surface-container-high shadow-sm">
+<span class="font-label-md text-label-md text-outline font-semibold">Ends In:</span>
+<div class="flex items-center gap-1.5 font-mono font-bold text-on-surface">
+<span class="bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded font-headline-sm">08</span>
+<span class="text-primary font-bold">:</span>
+<span class="bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded font-headline-sm">42</span>
+<span class="text-primary font-bold">:</span>
+<span class="bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded font-headline-sm">15</span>
+</div>
+</div>
+</div>
+<!-- Deals Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Deal Card 1 -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative aspect-[16/10] rounded-lg bg-surface-container-low overflow-hidden mb-4">
+<span class="absolute top-3 left-3 bg-error text-on-error font-label-sm text-label-sm font-bold px-2 py-0.5 rounded z-10">-35% OFF</span>
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="Ultralight noise cancelling headphones in matte titanium silver shown in dramatic soft daylight with crisp geometric angles and clean studio background in light mode luxury palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa0PSbemlU2TgbQJJxOZCJ2ZPwTSdjJU9uTtUpEbdG3G_QXBLkwzElbmdvEUmINgYOZMR_4ap91Ztf0KST5-012dX8dhQwqCAtVRd5xoJbN9sZqySh6Xq5lfTOEUIwyGHzW1-qBOelZJa40HSs1aiALKTeXHEsLkbZxzMKhIlWFraYYs26-DK6brDykoVhO2hprIm-WUBElqouUOBEIVrgHB3N1yOobv0DU7Sn8Qc"/>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">AUDIO • FLAGSHIP</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 truncate">AcousticFlow Spatial ANC Headphones</h3>
+<div class="flex items-baseline gap-2.5 my-2">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">$189.00</span>
+<span class="font-body-md text-body-md text-outline line-through">$289.00</span>
+</div>
+<!-- Progress Bar of Claimed Stock -->
+<div class="mt-3">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1.5">
+<span>Claimed: <strong class="text-on-surface">78%</strong></span>
+<span class="text-error font-semibold">Only 14 left</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<button class="w-full mt-4 h-10 rounded-lg bg-primary text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+<span>Claim Deal Now</span>
+</button>
+</div>
+<!-- Deal Card 2 -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative aspect-[16/10] rounded-lg bg-surface-container-low overflow-hidden mb-4">
+<span class="absolute top-3 left-3 bg-error text-on-error font-label-sm text-label-sm font-bold px-2 py-0.5 rounded z-10">-40% OFF</span>
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="Titanium smart fitness watch with dark sapphire crystal dial and fluoroelastomer band resting on smooth white quartz stone in modern studio light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRvHhl8MLnxKVeOMB5VUeO0FbrisMBif-XwjbWnrd3Cf5p2TRGejRgItZuw6TNram_IwLfY4YEd0YNGkmt8BoBY0llYHnSZPbeL0DeUq-y-FwNwOYX5-k8vXKypSloi8GAOlURGeqKd9bzWgh6xvhkf3qlgN8JqwXoap7qfEtkx7Mu6t63zyNGTSEr7ZEXPGbb5xKDWCyDHNLryFsMoOnqcIBF8PrQr-u2i_ghCFk"/>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">WEARABLE TECH</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 truncate">PulsePro GPS Smart Titanium Watch</h3>
+<div class="flex items-baseline gap-2.5 my-2">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">$219.00</span>
+<span class="font-body-md text-body-md text-outline line-through">$369.00</span>
+</div>
+<!-- Progress Bar of Claimed Stock -->
+<div class="mt-3">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1.5">
+<span>Claimed: <strong class="text-on-surface">91%</strong></span>
+<span class="text-error font-semibold">Only 5 left</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 91%"></div>
+</div>
+</div>
+<button class="w-full mt-4 h-10 rounded-lg bg-primary text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+<span>Claim Deal Now</span>
+</button>
+</div>
+<!-- Deal Card 3 -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative aspect-[16/10] rounded-lg bg-surface-container-low overflow-hidden mb-4">
+<span class="absolute top-3 left-3 bg-error text-on-error font-label-sm text-label-sm font-bold px-2 py-0.5 rounded z-10">-28% OFF</span>
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="Sculptural curved LED desk lamp with touch controls casting a warm diffuse cone of light on a minimal Scandinavian oak working surface in soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4yzxAhnIIxjyOnxwMllRJfNkxgtY5q92TaKL2IEMflE0HoyhBMfYjQGJn-6Z9sxiVMr3o67zxr6xSty-hn8DWZNspHE1iU1OURiY0xedfOpQ2Jxr9PyhJwYFFvjQMUrSfP09YtUH2jPRglbuF7pjcBmN-IkDaR6F7-P6st3Ub0iDPrbRyDJGLmt3dP8Fj9Dn7P3XLmVnwWJOB-1iiLlKF4NJL9owy79lJ1BG8L-o"/>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">WORKSPACE</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 truncate">Lumina Balance Bar Minimal Task Lamp</h3>
+<div class="flex items-baseline gap-2.5 my-2">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">$89.00</span>
+<span class="font-body-md text-body-md text-outline line-through">$124.00</span>
+</div>
+<!-- Progress Bar of Claimed Stock -->
+<div class="mt-3">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1.5">
+<span>Claimed: <strong class="text-on-surface">54%</strong></span>
+<span class="text-outline font-semibold">32 remaining</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 54%"></div>
+</div>
+</div>
+<button class="w-full mt-4 h-10 rounded-lg bg-primary text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+<span>Claim Deal Now</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. TRENDING PRODUCTS & BEST SELLERS (Tabbed Showcase) -->
+<section class="max-w-[1440px] mx-auto px-6 py-16" id="shop">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase tracking-wider">Most Wanted</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Trending Products &amp; Best Sellers</h2>
+</div>
+<!-- Filter Tabs -->
+<div class="inline-flex p-1 bg-surface-container-low rounded-xl border border-surface-container-high">
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest text-primary font-label-md font-bold shadow-sm" type="button">All Items</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-colors" type="button">Audio</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-colors" type="button">Computing</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-colors" type="button">Lifestyle</button>
+</div>
+</div>
+<!-- 4-Column Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Product Card 1 -->
+<div class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-200">
+<div>
+<div class="relative aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-3">
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm font-bold px-2 py-0.5 rounded z-10">-25% OFF</span>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-outline hover:text-error flex items-center justify-center transition-colors z-10" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Matte black wireless mechanical keyboard with low profile switches and brass weight accent, shot from high three-quarter angle in bright crisp architectural studio light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvUKF8Ju6VMmFzSkAaFYWfk4z5EVCT4gJXHO7BLTHLWhjN0cUp5MJkfbn5HQ4tvxg5GYdR81Dm9PziJs0HrHe6RZAd9CE7nqVQDlgohXNxQagBZYHwUUiaQBnB-d5qQKm7w9H3nXsQ7MSWRnieZ7NJHGcKjqJALx4oGO_-NmHuT5JHM8Gwu1iQ0z081TQMWaT7G6hhOuIDdmo9TIQ0CdMMknnr5sBxfX2zvI6DPKw"/>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">COMPUTING</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 line-clamp-2">KeyCraft Precision Low-Profile Mechanical Keyboard</h3>
+<div class="flex items-center gap-1.5 my-2">
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.9</span>
+<span class="font-body-sm text-body-sm text-outline">(1.2k reviews)</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container-high/60 mt-2">
+<div class="flex items-baseline justify-between mb-3">
+<div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">$149.00</span>
+<span class="font-body-sm text-body-sm text-outline line-through ml-1.5">$199.00</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm font-bold text-[11px]">In Stock</span>
+</div>
+<button class="w-full h-11 rounded-lg bg-primary-container text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-200">
+<div>
+<div class="relative aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-3">
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm font-bold px-2 py-0.5 rounded z-10">BESTSELLER</span>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-outline hover:text-error flex items-center justify-center transition-colors z-10" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Architectural ceramic acoustic speaker unit with textured linen fabric front resting gracefully on a light ash wooden shelf in modern airy interior lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDAymO101bLerrAL4Eaj-edGqv29a2luDS9VTqWdV1C6iqPGyKaMWj95Bkwnsg-khr1rBobFu2dlEZSLTtRc_nP2vmL2T_mxpO-Sj0HL-wlAG7HlhGC_F3j9fmEla_aQ6EguscLit9UvWLl7X6fYcJpVhtxSOSgyb0VdA5MPGc8OI-kcpHCs7aqH8lUm_iB9lLLSwyB7Nzc4eIf540uyXQXSMltPdFai8XEu-WUew"/>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">AUDIO</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 line-clamp-2">SonicSphere 360 Hi-Res Desktop Speaker</h3>
+<div class="flex items-center gap-1.5 my-2">
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.8</span>
+<span class="font-body-sm text-body-sm text-outline">(890 reviews)</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container-high/60 mt-2">
+<div class="flex items-baseline justify-between mb-3">
+<div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">$279.00</span>
+<span class="font-body-sm text-body-sm text-outline line-through ml-1.5">$310.00</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm font-bold text-[11px]">In Stock</span>
+</div>
+<button class="w-full h-11 rounded-lg bg-primary-container text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-200">
+<div>
+<div class="relative aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-3">
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm font-bold px-2 py-0.5 rounded z-10">-18% OFF</span>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-outline hover:text-error flex items-center justify-center transition-colors z-10" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modular magnetic 3-in-1 wireless charging station holding phone, smartwatch and earbuds simultaneously in pure white modern aesthetic studio setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAEuVRBFuEbLZ2ubZm_QyGwZcOeO8329_9Uvv9t8u0e9uScVOf7yATKOj8GdEgeEkEBgD6NC7ah1yvdgmAggDh3QojqRT4nRMUc8E3dzK0ropv0oCK6CcyRGq_yhQz71QB4tqmXd5gSYtAwzrtQD58OkT4WCLBLn8xhmk1Fn1EgMdBlc28qcoCdPccHePj_yE30PtB4id-JWWTXx85nhgSsCwYHnLaOfU6-NMK7WQ"/>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">POWER &amp; CHARGING</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 line-clamp-2">MagBase Trio Fast Wireless MagSafe Hub</h3>
+<div class="flex items-center gap-1.5 my-2">
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.9</span>
+<span class="font-body-sm text-body-sm text-outline">(2.4k reviews)</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container-high/60 mt-2">
+<div class="flex items-baseline justify-between mb-3">
+<div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">$115.00</span>
+<span class="font-body-sm text-body-sm text-outline line-through ml-1.5">$140.00</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm font-bold text-[11px]">In Stock</span>
+</div>
+<button class="w-full h-11 rounded-lg bg-primary-container text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-200">
+<div>
+<div class="relative aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-3">
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm font-bold px-2 py-0.5 rounded z-10">NEW DROP</span>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-outline hover:text-error flex items-center justify-center transition-colors z-10" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Heavyweight merino wool everyday carry commuter backpack with waterproof zippers and sleek concealed pockets in dark slate hue, against minimal concrete textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS-q6ogfJEMQJfILAho0MFhEh2sOqf5w1P4Z3bzOYpwUhDc0QP5YmgvGhY-ijGvZJCU5bRDn6vniUOD2JApVWZ1ONB8-9ssyX5k8lxnnLyigrMSETahescaH0Wz_DF5eo68YZYDbQrQQ0jFFJqWP_sXQzYxZSanc3e5hB5bobffliqako_9VEGiCo4zYxtEvaE6swux-hUJ0Qde0uH4ORkyHKLKfO538PTMt291OU"/>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">LIFESTYLE &amp; CARRY</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1 line-clamp-2">Nomad Transit 22L Weatherproof Backpack</h3>
+<div class="flex items-center gap-1.5 my-2">
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">5.0</span>
+<span class="font-body-sm text-body-sm text-outline">(640 reviews)</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container-high/60 mt-2">
+<div class="flex items-baseline justify-between mb-3">
+<div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">$165.00</span>
+<span class="font-body-sm text-body-sm text-outline line-through ml-1.5">$185.00</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm font-bold text-[11px]">In Stock</span>
+</div>
+<button class="w-full h-11 rounded-lg bg-primary-container text-on-primary font-label-lg font-semibold flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. CURATED EDITORIAL BANNER / FEATURE COLLECTION -->
+<section class="max-w-[1440px] mx-auto px-6 py-8">
+<div class="relative rounded-2xl bg-inverse-surface text-inverse-on-surface overflow-hidden p-8 lg:p-16">
+<!-- Subtle background glowing accents -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+<div class="lg:col-span-6 flex flex-col items-start gap-4">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-fixed-dim font-bold">Curated Editorial Capsule</span>
+<h2 class="font-headline-lg text-headline-lg lg:text-display-hero lg:leading-tight font-bold text-inverse-on-surface">
+              The Minimal Desk Setup — Engineered for deep work.
+            </h2>
+<p class="font-body-lg text-body-lg text-outline-variant max-w-lg">
+              Eliminate distractions and elevate your daily output with tactile accessories, balanced lighting, and zero visual clutter. Every piece calibrated for focus.
+            </p>
+<div class="flex items-center gap-4 pt-4">
+<a class="h-11 px-8 rounded-lg bg-surface-container-lowest text-on-background font-label-lg font-bold flex items-center gap-2 hover:bg-surface-container transition-colors" href="#editorial-drop">
+<span>Explore the Capsule</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<span class="font-body-sm text-body-sm text-outline-variant">Free worldwide white-glove setup</span>
+</div>
+</div>
+<div class="lg:col-span-6">
+<div class="rounded-xl overflow-hidden border border-surface-container-highest/20 aspect-[16/10] shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Pristine architectural workspace showcasing an ultra-wide monitor with dark mode IDE, handcrafted solid oak desk riser, precision aluminum mouse, and warm directional brass task lamp in tranquil dusk daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4QALcFMnOm4bfjce5EgerJ9jG-d-rXIySBCgCQLIukaUf0LZb0xHd0-FrpYqRlM4GM6Myyeyh-MK2HN8j2O9aO-LWigemSsxwtiaFHCfapncuruWG-7jVt3b7kS7ih8U9RbGmhqu9xeEeO-pP4qgX8l2sVoR8-pT1YoPlE7C8KckMWOv26g0Mw_Zp2OnZCR2ooJLpTz_KKV9d0S4tQv2WQDs9XSS2kl9_qo3CbUA"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. CUSTOMER REVIEWS & SOCIAL PROOF -->
+<section class="max-w-[1440px] mx-auto px-6 py-16">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase tracking-wider">High Trust Quality</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Loved by 120,000+ Discerning Creators</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Read real verified stories from professionals who redesigned their spaces with ShopEase.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Review 1 -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center text-amber-500 mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+              "The finish on the Aura headphones rivaled Apple's top tier at almost half the price. Next-day delivery was seamlessly accurate and packaging felt like unwrapping luxury."
+            </p>
+</div>
+<div class="flex items-center gap-3 pt-6 border-t border-surface-container-high/60 mt-6">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of an architect with minimal black spectacles against clean white studio backdrop, soft flattering lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZAejQwNRk5WG_scDyLoK4icH7NT_yPGJMpEtaPZ53c35dC4A3K6ok2BJZTKBk3x_7FJNPZIuPjrCJ5UxH8UhXcRiioDE5-KQqLbH9OCC_xgiAcBuvt5W_8YtSduj0flWX6gp3veaPlX9B7A8RQElJS09G08DE1CO9eI-KjYR1SD-Zk1v_WUdcXZYd6mPfiXPlY74BOvNNzEQo5XoR2oacbCJ2uEL6MzuEe83hl8o"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Marcus Vance</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary" title="Verified Buyer">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Lead Architect • Verified Purchase</span>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center text-amber-500 mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+              "Finding authentic curated minimalist office accessories usually means ordering across 5 different niche boutique sites. ShopEase consolidated the entire upgrade into one smooth checkout."
+            </p>
+</div>
+<div class="flex items-center gap-3 pt-6 border-t border-surface-container-high/60 mt-6">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a female product designer with modern haircut in soft bright daylight in a sunlit loft workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHnZMNv4kQM-lYRscGS_jIq7-o1rwsm7rNy7RAUanleCksl9Q0B7SZc-gFEfWqw4TF9a010YjXDXb7F1mgf9fCH_vSxDrsgZU5ivMYGNq8CQbi9TMthwSF5UFqyJCfsYb5lSmxJkRWOVlpZtfHpW60h97j9XdnyzrDxQYWEVjXJy3lbIISApXTHmTsDyr5FyPCCrVmySUJVx_Nzl7-_0EQhPiPui7wq87MPDT9J-c"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Elena Rostova</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary" title="Verified Buyer">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Design Director • Verified Purchase</span>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center text-amber-500 mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+              "Their 30-day risk-free policy is genuine. I traded up the mechanical keyboard model after testing it for two weeks without any pushback. Unmatched customer experience."
+            </p>
+</div>
+<div class="flex items-center gap-3 pt-6 border-t border-surface-container-high/60 mt-6">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a male creative technologist smiling warmly in crisp bright contemporary studio light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQZ5c5Pj-xTZj5fd5neGkFw5N_P-8dlYQM5h_hG0AxnW5Q4YARWpDB3-bpmotKyChwkeCm4SN01TEtUzKiWGmaYZPosf2PDv-oBVkT16n7vC_zfYCD6dLtw3goH31CqxIXf-ooPIk1fhmEoi2Iy03U5Q824exARM9flsnKOdcsSiZ7LAwVT7J8vXQRG8dqSq8GbBAk664M8DKpjzadb_6eCSaYwnCBlKVv9hYKD4c"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">David Chen</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary" title="Verified Buyer">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Software Engineer • Verified Purchase</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. NEWSLETTER VIP CLUB -->
+<section class="max-w-[1440px] mx-auto px-6 py-12">
+<div class="bg-surface-container-low border border-surface-container-high rounded-2xl p-8 lg:p-12 text-center max-w-3xl mx-auto shadow-sm">
+<span class="w-12 h-12 rounded-full bg-primary-container/10 text-primary flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Join the ShopEase VIP Circle</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto mt-2">
+          Subscribe for confidential product drops, private flash sales, and get <strong>$20 off your first order</strong>.
+        </p>
+<form class="flex flex-col sm:flex-row gap-3 mt-8 max-w-lg mx-auto" onsubmit="event.preventDefault();">
+<input class="flex-1 h-11 px-4 rounded-lg bg-surface-container-lowest border border-outline-variant/60 font-body-md text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20" placeholder="Enter your work or personal email..." required="" type="email"/>
+<button class="h-11 px-6 rounded-lg bg-primary-container text-on-primary font-label-lg font-semibold hover:bg-secondary active:scale-[0.98] transition-all shrink-0" type="submit">
+            Claim $20 Reward
+          </button>
+</form>
+<span class="block font-body-sm text-body-sm text-outline mt-3">No spam ever. Unsubscribe with a single click at any time.</span>
+</div>
+</section>
+</main>
+<!-- 10. COMPREHENSIVE FOOTER (Shared Components JSON Anchor) -->
+<footer class="docked full-width bottom bg-surface-container-low border-t border-surface-container-high">
+<div class="w-full px-8 py-12 max-w-[1440px] mx-auto flex flex-col gap-8">
+<!-- Top Multi-Column Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+<!-- Brand identity column -->
+<div class="lg:col-span-2 flex flex-col gap-4">
+<a class="flex items-center gap-3" href="#">
+<img alt="ShopEase Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VqCPp98m27GtQPD7VV3MJVSFksw-vRNx8RfYQ0ljfjaAXttEUz6KPtbajSj2zMDgaZyXSp7_V8gOKtm8Y2h8JH18KpXCkGtmYyDqcwsuLspbcdXoZHo6EsZskneXczWBiL4Ax4S4OoRdcq5wMkLJhF2wybzBsIalNrD_Ql27dTYTiSZwvkM6ykf1ETAwlTeX8RWRsmxJes8dV0c1F-Vv-_6moFFsDFwIb00B73Vlt8"/>
+</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+            Curated modern retail engineering effortless shopping. High-trust electronics, streamlined workspace architecture, and design-led lifestyle goods.
+          </p>
+<div class="flex items-center gap-3 text-outline mt-2">
+<a class="w-9 h-9 rounded-lg bg-surface-container-lowest border border-surface-container-high flex items-center justify-center hover:text-primary hover:border-primary transition-colors" href="#social-x">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-surface-container-lowest border border-surface-container-high flex items-center justify-center hover:text-primary hover:border-primary transition-colors" href="#social-ig">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-surface-container-lowest border border-surface-container-high flex items-center justify-center hover:text-primary hover:border-primary transition-colors" href="#social-yt">
+<span class="material-symbols-outlined text-[18px]">smart_display</span>
+</a>
+</div>
+</div>
+<!-- Shop & Categories -->
+<div class="flex flex-col gap-3 font-label-md text-label-md">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">Categories</span>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#audio">Audio &amp; Acoustics</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#workspace">Minimal Workspace</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#smart">Smart Home &amp; IoT</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#apparel">Designer Wearables</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#photography">Digital Optics</a>
+</div>
+<!-- Guarantees & Links from JSON -->
+<div class="flex flex-col gap-3 font-label-md text-label-md">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">Trust &amp; Service</span>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#shipping">Free Shipping</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#guarantee">30-Day Guarantee</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#support">24/7 Support</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#payment">Secure Payment</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#privacy">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#terms">Terms of Service</a>
+</div>
+<!-- Merchant / Company Portal -->
+<div class="flex flex-col gap-3 font-label-md text-label-md">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">Company &amp; Merchant</span>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#about">About ShopEase</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#careers">Careers • We're hiring</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#press">Press Room</a>
+<a class="text-primary font-semibold hover:text-secondary transition-colors" href="#merchant">Sell on ShopEase</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#affiliate">Creator Program</a>
+</div>
+</div>
+<!-- Bottom Hairline Separator & Copyright -->
+<div class="border-t border-surface-container-high pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-outline">
+<p class="font-normal">© 2025 ShopEase Inc. All rights reserved.</p>
+<!-- Payment Badges Representation -->
+<div class="flex items-center gap-4 text-outline font-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">credit_card</span> Apple Pay</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">credit_card</span> Visa / MC</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">verified_user</span> 256-Bit SSL</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
