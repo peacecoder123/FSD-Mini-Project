@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongoMemoryServer = null;
 
@@ -8,29 +7,39 @@ export const connectDB = async () => {
     return;
   }
 
-  const uri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shopease';
+  const uri = process.env.MONGODB_URI || process.env.MONGO_URI;
 
-  try {
-    // Attempt standard connection with 2.5s timeout
-    await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 2500,
-    });
-    console.log(`[MongoDB] Connected to external MongoDB instance at: ${mongoose.connection.host}:${mongoose.connection.port}`);
-  } catch (err) {
-    console.warn(`[MongoDB] External MongoDB connection failed (${err.message}). Starting embedded high-performance MongoDB instance...`);
+  if (uri) {
     try {
-      mongoMemoryServer = await MongoMemoryServer.create({
-        instance: {
-          dbName: 'shopease',
-        },
+      await mongoose.connect(uri, {
+        serverSelectionTimeoutMS: 3000,
       });
-      const memoryUri = mongoMemoryServer.getUri();
-      await mongoose.connect(memoryUri);
-      console.log(`[MongoDB] Connected to embedded MongoDB instance at: ${memoryUri}`);
-    } catch (innerErr) {
-      console.error(`[MongoDB] Failed to initialize embedded MongoDB:`, innerErr);
-      process.exit(1);
+      console.log(`[MongoDB] Connected to external MongoDB instance at: ${mongoose.connection.host}`);
+      return;
+    } catch (err) {
+      console.warn(`[MongoDB] External MongoDB connection failed (${err.message}).`);
     }
+  }
+
+  // In Vercel serverless environment, do not attempt to start in-memory binaries
+  if (process.env.VERCEL) {
+    console.warn(`[MongoDB] Running on Vercel without active cloud MongoDB. Set MONGODB_URI in Vercel Environment Variables.`);
+    return;
+  }
+
+  // Local development fallback: Start embedded in-memory MongoDB
+  try {
+    const { MongoMemoryServer } = await import('mongodb-memory-server');
+    mongoMemoryServer = await MongoMemoryServer.create({
+      instance: {
+        dbName: 'shopease',
+      },
+    });
+    const memoryUri = mongoMemoryServer.getUri();
+    await mongoose.connect(memoryUri);
+    console.log(`[MongoDB] Connected to embedded MongoDB instance at: ${memoryUri}`);
+  } catch (innerErr) {
+    console.error(`[MongoDB] Embedded MongoDB startup:`, innerErr.message);
   }
 
   mongoose.connection.on('disconnected', () => {

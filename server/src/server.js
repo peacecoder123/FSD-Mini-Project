@@ -16,6 +16,8 @@ import adminRoutes from './routes/adminRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import { seedDatabaseIfEmpty } from './utils/seedData.js';
 
+import mongoose from 'mongoose';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -23,11 +25,10 @@ dotenv.config();
 
 const app = express();
 
-// Database Connection
-await connectDB();
-
-// Auto seed if empty
-await seedDatabaseIfEmpty();
+// Database Connection (non-blocking for serverless cold-start speed)
+connectDB()
+  .then(() => seedDatabaseIfEmpty())
+  .catch((err) => console.error('[DB Startup Error]:', err.message));
 
 // Global Middleware
 app.use(cors({
@@ -46,12 +47,29 @@ if (process.env.NODE_ENV !== 'test') {
 const uploadsPath = path.resolve('uploads');
 app.use('/uploads', express.static(uploadsPath));
 
+// Root API Landing Route
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    platform: 'ShopEase E-Commerce REST API',
+    version: '1.0.0',
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'connecting/offline',
+    endpoints: {
+      health: '/api/health',
+      products: '/api/products',
+      orders: '/api/orders',
+      auth: '/api/auth'
+    }
+  });
+});
+
 // Healthcheck Route
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
     platform: 'ShopEase E-Commerce API',
     version: '1.0.0',
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'connecting/offline',
     timestamp: new Date().toISOString(),
   });
 });

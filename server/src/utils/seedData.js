@@ -7,6 +7,10 @@ import Review from '../models/Review.js';
 import Cart from '../models/Cart.js';
 
 export const seedDatabaseIfEmpty = async () => {
+  if (mongoose.connection.readyState !== 1) {
+    console.log('[Seed] Database not connected. Skipping auto-seed.');
+    return;
+  }
   try {
     const productCount = await Product.countDocuments();
     // Re-seed if empty or if products are in dollars (< 1000)
