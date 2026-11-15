@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+// Disable query buffering so serverless requests fail fast or use fallback
+mongoose.set('bufferCommands', false);
+
 let mongoMemoryServer = null;
 
 export const connectDB = async () => {

@@ -1,9 +1,12 @@
 {
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "https://fsd-mini-project-hazel.vercel.app/api/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
 }
-
