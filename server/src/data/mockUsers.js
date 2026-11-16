@@ -30,6 +30,21 @@ export const mockUsers = [
     },
   },
   {
+    _id: '65f000000000000000000104',
+    name: 'Customer Demo',
+    email: 'customer@shopease.com',
+    password: 'customer123',
+    role: 'customer',
+    phone: '+91 91234 56789',
+    address: {
+      street: '12, M.G. Road',
+      city: 'Pune',
+      state: 'Maharashtra',
+      postalCode: '411001',
+      country: 'India',
+    },
+  },
+  {
     _id: '65f000000000000000000103',
     name: 'Sarah Chen',
     email: 'sarah@example.com',
