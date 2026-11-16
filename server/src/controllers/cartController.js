@@ -1,5 +1,7 @@
+import mongoose from 'mongoose';
 import Cart from '../models/Cart.js';
 import Product from '../models/Product.js';
+import { mockProducts } from '../data/mockProducts.js';
 
 // Helper to ensure cart exists
 const findOrCreateCart = async (userId) => {
@@ -15,6 +17,20 @@ const findOrCreateCart = async (userId) => {
 // @access  Private
 export const getCart = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({
+        success: true,
+        data: {
+          user: req.user?._id,
+          items: [],
+          subtotal: 0,
+          shipping: 0,
+          tax: 0,
+          total: 0,
+        },
+      });
+    }
+
     const cart = await findOrCreateCart(req.user._id);
     cart.calculateTotals();
     await cart.save();

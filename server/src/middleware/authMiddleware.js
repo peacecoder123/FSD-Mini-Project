@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import User from '../models/User.js';
+import { mockUsers } from '../data/mockUsers.js';
 
 export const protect = async (req, res, next) => {
   let token;
@@ -8,6 +10,18 @@ export const protect = async (req, res, next) => {
     try {
       token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'shopease_super_secret_jwt_key_2026');
+
+      if (mongoose.connection.readyState !== 1) {
+        const found = mockUsers.find((u) => u._id === decoded.id);
+        req.user = found || {
+          _id: decoded.id,
+          name: 'Demo User',
+          email: 'demo@shopease.com',
+          role: decoded.id === '65f000000000000000000101' ? 'admin' : 'customer',
+        };
+        return next();
+      }
+
       req.user = await User.findById(decoded.id).select('-password');
       if (!req.user) {
         return res.status(401).json({ success: false, message: 'User not found for this token' });

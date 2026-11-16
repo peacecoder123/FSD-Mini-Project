@@ -1,7 +1,9 @@
+import mongoose from 'mongoose';
 import User from '../models/User.js';
 import Cart from '../models/Cart.js';
 import { generateToken } from '../utils/generateToken.js';
 import { shopEvents } from '../utils/eventEmitter.js';
+import { mockUsers } from '../data/mockUsers.js';
 
 // @desc    Register a new customer
 // @route   POST /api/auth/register
@@ -12,6 +14,22 @@ export const registerUser = async (req, res, next) => {
 
     if (!name || !email || !password) {
       return res.status(400).json({ success: false, message: 'Please provide name, email and password' });
+    }
+
+    if (mongoose.connection.readyState !== 1) {
+      const assignedRole = role === 'admin' ? 'admin' : 'customer';
+      const newId = '65f000000000000000' + Math.floor(100000 + Math.random() * 900000);
+      return res.status(201).json({
+        success: true,
+        message: 'Account registered successfully',
+        data: {
+          _id: newId,
+          name,
+          email,
+          role: assignedRole,
+          token: generateToken(newId),
+        },
+      });
     }
 
     const userExists = await User.findOne({ email });
@@ -62,6 +80,30 @@ export const loginUser = async (req, res, next) => {
       return res.status(400).json({ success: false, message: 'Please provide both email and password' });
     }
 
+    if (mongoose.connection.readyState !== 1) {
+      const mockUser = mockUsers.find(
+        (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+      );
+
+      if (mockUser) {
+        return res.json({
+          success: true,
+          message: 'Signed in successfully',
+          data: {
+            _id: mockUser._id,
+            name: mockUser.name,
+            email: mockUser.email,
+            role: mockUser.role,
+            phone: mockUser.phone,
+            address: mockUser.address,
+            token: generateToken(mockUser._id),
+          },
+        });
+      } else {
+        return res.status(401).json({ success: false, message: 'Invalid email or password' });
+      }
+    }
+
     const user = await User.findOne({ email }).select('+password');
 
     if (user && (await user.matchPassword(password))) {
@@ -91,6 +133,14 @@ export const loginUser = async (req, res, next) => {
 // @access  Private
 export const getUserProfile = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      const mockUser = mockUsers.find((u) => u._id === req.user?._id) || req.user || mockUsers[1];
+      return res.json({
+        success: true,
+        data: mockUser,
+      });
+    }
+
     const user = await User.findById(req.user._id);
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });

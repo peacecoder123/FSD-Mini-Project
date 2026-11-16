@@ -1,0 +1,47 @@
+export const mockUsers = [
+  {
+    _id: '65f000000000000000000101',
+    name: 'Admin Director',
+    email: 'admin@shopease.com',
+    password: 'admin123',
+    role: 'admin',
+    phone: '+91 98765 43210',
+    address: {
+      street: '42, Indiranagar 100ft Road',
+      city: 'Bengaluru',
+      state: 'Karnataka',
+      postalCode: '560038',
+      country: 'India',
+    },
+  },
+  {
+    _id: '65f000000000000000000102',
+    name: 'Alex Rivera',
+    email: 'alex@example.com',
+    password: 'customer123',
+    role: 'customer',
+    phone: '+91 91234 56789',
+    address: {
+      street: '15, Bandra Kurla Complex',
+      city: 'Mumbai',
+      state: 'Maharashtra',
+      postalCode: '400051',
+      country: 'India',
+    },
+  },
+  {
+    _id: '65f000000000000000000103',
+    name: 'Sarah Chen',
+    email: 'sarah@example.com',
+    password: 'customer123',
+    role: 'customer',
+    phone: '+91 99887 76655',
+    address: {
+      street: '88, Connaught Place Outer Circle',
+      city: 'New Delhi',
+      state: 'Delhi',
+      postalCode: '110001',
+      country: 'India',
+    },
+  },
+];

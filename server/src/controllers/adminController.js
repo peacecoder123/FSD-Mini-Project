@@ -1,12 +1,55 @@
+import mongoose from 'mongoose';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import User from '../models/User.js';
+import { mockProducts } from '../data/mockProducts.js';
+import { mockUsers } from '../data/mockUsers.js';
 
 // @desc    Get aggregated Admin dashboard statistics
 // @route   GET /api/admin/dashboard
 // @access  Private/Admin
 export const getDashboardStats = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      const months = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+      return res.json({
+        success: true,
+        data: {
+          metrics: {
+            totalRevenue: 842850.0,
+            totalOrders: 32,
+            totalProducts: mockProducts.length,
+            totalCustomers: mockUsers.length,
+            pendingOrders: 5,
+            deliveredOrders: 24,
+          },
+          lowStockProducts: mockProducts.filter((p) => p.stockCount <= 12).slice(0, 5),
+          recentOrders: [
+            {
+              _id: 'ord_recent_1',
+              orderNumber: 'ORD-982142',
+              user: { name: 'Alex Rivera', email: 'alex@example.com' },
+              totalPrice: 26248.95,
+              status: 'Confirmed',
+            },
+            {
+              _id: 'ord_recent_2',
+              orderNumber: 'ORD-729104',
+              user: { name: 'Sarah Chen', email: 'sarah@example.com' },
+              totalPrice: 14694.75,
+              status: 'Delivered',
+            },
+          ],
+          topProducts: mockProducts.slice(0, 5),
+          revenueChart: months.map((m, idx) => ({
+            month: m,
+            revenue: 145000 + idx * 48000,
+            orders: 12 + idx * 5,
+          })),
+        },
+      });
+    }
+
     const totalProducts = await Product.countDocuments();
     const totalCustomers = await User.countDocuments({ role: 'customer' });
     const totalOrders = await Order.countDocuments();
@@ -84,6 +127,13 @@ export const getDashboardStats = async (req, res, next) => {
 // @access  Private/Admin
 export const getUsers = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({
+        success: true,
+        data: mockUsers,
+      });
+    }
+
     const users = await User.find().select('-password').sort({ createdAt: -1 });
     res.json({
       success: true,
