@@ -277,6 +277,30 @@ export const getOrderById = async (req, res, next) => {
 // @access  Private/Admin
 export const getAllOrders = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({
+        success: true,
+        data: [
+          {
+            _id: 'ord_demo_1',
+            orderNumber: 'ORD-982142',
+            user: { _id: 'u1', name: 'Alex Rivera', email: 'alex@example.com' },
+            items: [
+              {
+                title: mockProducts[0].title,
+                price: mockProducts[0].price,
+                quantity: 1,
+              },
+            ],
+            totalPrice: parseFloat((mockProducts[0].price * 1.05).toFixed(2)),
+            paymentMethod: 'card_simulated',
+            status: 'Confirmed',
+            createdAt: new Date().toISOString(),
+          },
+        ],
+      });
+    }
+
     const orders = await Order.find({})
       .populate('user', 'id name email')
       .sort({ createdAt: -1 });
