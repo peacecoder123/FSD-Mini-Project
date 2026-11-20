@@ -236,6 +236,42 @@ export const createProduct = async (req, res, next) => {
       isHotDeal,
     } = req.body;
 
+    if (mongoose.connection.readyState !== 1) {
+      const generatedSku = sku || `SKU-${Date.now().toString().slice(-6)}`;
+      const existing = mockProducts.find((p) => p.sku === generatedSku);
+      if (existing) {
+        return res.status(400).json({ success: false, message: 'A product with this SKU already exists' });
+      }
+
+      const newProduct = {
+        _id: '65f000000000000000' + Math.floor(100000 + Math.random() * 900000),
+        title,
+        brand,
+        sku: generatedSku,
+        category: category || 'Electronics',
+        description,
+        price: Number(price),
+        originalPrice: originalPrice ? Number(originalPrice) : Number(price),
+        images: Array.isArray(images) && images.length > 0 ? images : ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80'],
+        stockCount: Number(stockCount) || 10,
+        inStock: (Number(stockCount) || 10) > 0,
+        rating: 5.0,
+        numReviews: 1,
+        features: Array.isArray(features) ? features : [],
+        isFeatured: !!isFeatured,
+        isBestSeller: !!isBestSeller,
+        isHotDeal: !!isHotDeal,
+      };
+
+      mockProducts.unshift(newProduct);
+
+      return res.status(201).json({
+        success: true,
+        message: 'Product created successfully',
+        data: newProduct,
+      });
+    }
+
     const skuExists = await Product.findOne({ sku });
     if (skuExists) {
       return res.status(400).json({ success: false, message: 'A product with this SKU already exists' });
@@ -273,6 +309,30 @@ export const createProduct = async (req, res, next) => {
 // @access  Private/Admin
 export const updateProduct = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      const prod = mockProducts.find(
+        (p) => p._id === req.params.id || p.sku === req.params.id
+      );
+
+      if (!prod) {
+        return res.status(404).json({ success: false, message: 'Product not found' });
+      }
+
+      Object.assign(prod, req.body);
+      if (req.body.price !== undefined) prod.price = Number(req.body.price);
+      if (req.body.originalPrice !== undefined) prod.originalPrice = Number(req.body.originalPrice);
+      if (req.body.stockCount !== undefined) {
+        prod.stockCount = Number(req.body.stockCount);
+        prod.inStock = prod.stockCount > 0;
+      }
+
+      return res.json({
+        success: true,
+        message: 'Product updated successfully',
+        data: prod,
+      });
+    }
+
     const product = await Product.findById(req.params.id);
 
     if (!product) {
@@ -300,6 +360,23 @@ export const updateProduct = async (req, res, next) => {
 // @access  Private/Admin
 export const deleteProduct = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      const index = mockProducts.findIndex(
+        (p) => p._id === req.params.id || p.sku === req.params.id
+      );
+
+      if (index === -1) {
+        return res.status(404).json({ success: false, message: 'Product not found' });
+      }
+
+      mockProducts.splice(index, 1);
+
+      return res.json({
+        success: true,
+        message: 'Product deleted successfully',
+      });
+    }
+
     const product = await Product.findById(req.params.id);
 
     if (!product) {

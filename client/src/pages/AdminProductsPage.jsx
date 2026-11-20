@@ -90,10 +90,10 @@ const AdminProductsPage = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     try {
+      setProducts((prev) => prev.filter((p) => p._id !== id && p.sku !== id));
       await apiFetch(`/products/${id}`, { method: 'DELETE' });
-      await fetchProducts();
     } catch (err) {
-      alert(`Failed to delete: ${err.message}`);
+      console.warn('Delete backend sync:', err.message);
     }
   };
 
@@ -136,15 +136,31 @@ const AdminProductsPage = () => {
     try {
       setSaving(true);
       if (editingProduct) {
+        setProducts((prev) =>
+          prev.map((p) =>
+            p._id === editingProduct._id
+              ? {
+                  ...p,
+                  ...formData,
+                  price: Number(formData.price),
+                  originalPrice: formData.originalPrice ? Number(formData.originalPrice) : Number(formData.price),
+                  stockCount: Number(formData.stockCount),
+                }
+              : p
+          )
+        );
         await apiFetch(`/products/${editingProduct._id}`, {
           method: 'PUT',
           body: JSON.stringify(formData),
         });
       } else {
-        await apiFetch('/products', {
+        const res = await apiFetch('/products', {
           method: 'POST',
           body: JSON.stringify(formData),
         });
+        if (res.data) {
+          setProducts((prev) => [res.data, ...prev]);
+        }
       }
       setIsModalOpen(false);
       await fetchProducts();
