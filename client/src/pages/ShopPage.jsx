@@ -3,9 +3,16 @@ import { useSearchParams, Link } from 'react-router-dom';
 import useProducts from '../hooks/useProducts';
 import ProductCard from '../components/common/ProductCard';
 
+const normalizeCategory = (cat) => {
+  if (!cat) return 'All';
+  const c = cat.trim();
+  if (c.toLowerCase() === 'home' || c.toLowerCase() === 'kitchen') return 'Home & Kitchen';
+  return c;
+};
+
 const ShopPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialCategory = searchParams.get('category') || 'All';
+  const initialCategory = normalizeCategory(searchParams.get('category'));
   const initialSearch = searchParams.get('search') || '';
   const initialDeal = searchParams.get('deal') === 'true';
 
@@ -39,8 +46,11 @@ const ShopPage = () => {
 
   // Keep search params in sync
   useEffect(() => {
-    const cat = searchParams.get('category');
-    if (cat && cat !== category) setCategory(cat);
+    const rawCat = searchParams.get('category');
+    if (rawCat) {
+      const normCat = normalizeCategory(rawCat);
+      if (normCat !== category) setCategory(normCat);
+    }
     const s = searchParams.get('search');
     if (s && s !== search) setSearch(s);
   }, [searchParams]);

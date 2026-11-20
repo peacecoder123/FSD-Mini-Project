@@ -27,7 +27,27 @@ export const getProducts = async (req, res, next) => {
     if (mongoose.connection.readyState !== 1) {
       let filtered = [...mockProducts];
       if (category && category !== 'All') {
-        filtered = filtered.filter((p) => p.category.toLowerCase() === category.toLowerCase());
+        let catParam = category.trim().toLowerCase();
+        if (catParam === 'home' || catParam === 'kitchen' || catParam.startsWith('home')) {
+          catParam = 'home & kitchen';
+        } else if (catParam.startsWith('elect') || catParam.startsWith('audio')) {
+          catParam = 'electronics';
+        } else if (catParam.startsWith('fash') || catParam.startsWith('appar')) {
+          catParam = 'fashion';
+        } else if (catParam.startsWith('book')) {
+          catParam = 'books';
+        } else if (catParam.startsWith('beaut')) {
+          catParam = 'beauty';
+        } else if (catParam.startsWith('sport')) {
+          catParam = 'sports';
+        }
+
+        filtered = filtered.filter(
+          (p) =>
+            p.category.toLowerCase() === catParam ||
+            p.category.toLowerCase().includes(catParam) ||
+            catParam.includes(p.category.toLowerCase())
+        );
       }
       if (search && search.trim() !== '') {
         const s = search.toLowerCase();
@@ -79,7 +99,22 @@ export const getProducts = async (req, res, next) => {
 
     // Category filter
     if (category && category !== 'All') {
-      query.category = category;
+      let catParam = category.trim();
+      if (/^home|^kitchen/i.test(catParam)) {
+        query.category = /Home & Kitchen/i;
+      } else if (/^elect|^audio/i.test(catParam)) {
+        query.category = /Electronics/i;
+      } else if (/^fash|^appar/i.test(catParam)) {
+        query.category = /Fashion/i;
+      } else if (/^book/i.test(catParam)) {
+        query.category = /Books/i;
+      } else if (/^beaut/i.test(catParam)) {
+        query.category = /Beauty/i;
+      } else if (/^sport/i.test(catParam)) {
+        query.category = /Sports/i;
+      } else {
+        query.category = new RegExp(catParam, 'i');
+      }
     }
 
     // Price filter

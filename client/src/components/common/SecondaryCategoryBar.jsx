@@ -26,7 +26,7 @@ const SecondaryCategoryBar = () => {
             Fashion & Apparel
           </Link>
           <Link
-            to="/shop?category=Home & Kitchen"
+            to="/shop?category=Home%20%26%20Kitchen"
             className="hover:text-primary shrink-0 transition-colors"
           >
             Home & Kitchen

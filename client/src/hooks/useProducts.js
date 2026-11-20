@@ -2,6 +2,15 @@ import { useState, useEffect, useCallback } from 'react';
 import apiFetch from '../utils/api';
 import useDebounce from './useDebounce';
 
+const normalizeCategory = (c) => {
+  if (!c) return 'All';
+  const s = c.trim();
+  if (s.toLowerCase() === 'home' || s.toLowerCase() === 'kitchen' || s.toLowerCase().startsWith('home')) {
+    return 'Home & Kitchen';
+  }
+  return s;
+};
+
 export const useProducts = (initialParams = {}) => {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({ total: 0, page: 1, pages: 1, limit: 12 });
@@ -10,12 +19,16 @@ export const useProducts = (initialParams = {}) => {
 
   // Filter and sort states
   const [search, setSearch] = useState(initialParams.search || '');
-  const [category, setCategory] = useState(initialParams.category || 'All');
+  const [category, setCategoryState] = useState(normalizeCategory(initialParams.category));
   const [minPrice, setMinPrice] = useState(initialParams.minPrice || '');
   const [maxPrice, setMaxPrice] = useState(initialParams.maxPrice || '');
   const [sort, setSort] = useState(initialParams.sort || 'featured');
   const [inStockOnly, setInStockOnly] = useState(false);
   const [page, setPage] = useState(1);
+
+  const setCategory = (cat) => {
+    setCategoryState(normalizeCategory(cat));
+  };
 
   const debouncedSearch = useDebounce(search, 350);
 
